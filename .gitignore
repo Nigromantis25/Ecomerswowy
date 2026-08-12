@@ -1,4 +1,12 @@
-### Python template
+db.sqlite3
+*.pyc
+__pycache__/
+env/
+venv/
+.env
+.env.local
+media/
+*.sqlite3### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
