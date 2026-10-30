@@ -8,8 +8,8 @@
                 <div class="col-md-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Order Success</li>
+                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Pedido realizado</li>
                         </ol>
                     </nav>
                 </div>
@@ -22,16 +22,16 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="order-success-content text-center">
                         <i class="uil uil-check-circle text-success" style="font-size: 80px;"></i>
-                        <h2 class="mt-3">Order Placed Successfully!</h2>
-                        <p class="mb-4">Your order #{{ order.order_number }} has been placed successfully.</p>
+                        <h2 class="mt-3">¡Pedido realizado correctamente!</h2>
+                        <p class="mb-4">Tu pedido #{{ order.order_number }} se ha registrado correctamente.</p>
                         
                         <div class="order-details bg-light p-4 rounded mb-4">
-                            <h4 class="mb-3">Order Details</h4>
+                            <h4 class="mb-3">Detalles del pedido</h4>
                             <div class="row">
                                 <div class="col-6 text-left">
-                                    <p>Order Total:</p>
-                                    <p>Delivery Charge:</p>
-                                    <p><strong>Grand Total:</strong></p>
+                                    <p>Subtotal:</p>
+                                    <p>Envío:</p>
+                                    <p><strong>Total:</strong></p>
                                 </div>
                                 <div class="col-6 text-right">
                                     <p>{{ settings.currency }}{{ order.total_amount }}</p>
@@ -42,7 +42,7 @@
                         </div>
                         
                         <div class="delivery-info bg-light p-4 rounded mb-4">
-                            <h4 class="mb-3">Delivery Information</h4>
+                            <h4 class="mb-3">Información de entrega</h4>
                             <p class="mb-1"><strong>{{ order.address.user.name }}</strong></p>
                             <p class="mb-1">{{ order.address.address }}</p>
                             <p class="mb-1">{{ order.address.city }}, {{ order.address.postal_code }}</p>
@@ -50,8 +50,8 @@
                         </div>
                         
                         <div class="mt-4">
-                            <a href="{% url 'users:dashboard.orders' %}" class="btn btn-primary">View Order</a>
-                            <a href="{% url 'products:index' %}" class="btn btn-outline-primary ml-2">Continue Shopping</a>
+                            <a href="{% url 'users:dashboard.orders' %}" class="btn btn-primary">Ver pedido</a>
+                            <a href="{% url 'products:index' %}" class="btn btn-outline-primary ml-2">Seguir comprando</a>
                         </div>
                     </div>
                 </div>

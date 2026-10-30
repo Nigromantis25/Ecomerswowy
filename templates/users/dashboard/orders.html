@@ -1,7 +1,7 @@
 {% extends 'users/dashboard/base.html' %}
 
-{% block dashboard_title %}My Orders{% endblock %}
-{% block dashboard_subtitle %}Order History{% endblock %}
+{% block dashboard_title %}Mis pedidos{% endblock %}
+{% block dashboard_subtitle %}Historial de pedidos{% endblock %}
 
 {% block style %}
 
@@ -41,8 +41,8 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div>
-                        <h5 class="mb-0">Order #{{ order.order_number }}</h5>
-                        <small class="text-muted">Placed on {{ order.created|date:"M d, Y" }}</small>
+                        <h5 class="mb-0">Pedido #{{ order.order_number }}</h5>
+                        <small class="text-muted">Realizado el {{ order.created|date:"d/m/Y" }}</small>
                     </div>
                     <span class="badge badge-{{ order.status }}">{{ order.get_status_display }}</span>
                 </div>
@@ -60,8 +60,8 @@
                                 </div>
                                 <div class="order-product-dt ml-3">
                                     <h6 class="mb-1">{{ item.product.name }}</h6>
-                                    <p class="mb-0">Quantity: {{ item.quantity }}</p>
-                                    <p class="mb-0">Price: {{ settings.currency }}{{ item.price }}</p>
+                                    <p class="mb-0">Cantidad: {{ item.quantity }}</p>
+                                    <p class="mb-0">Precio: {{ settings.currency }}{{ item.price }}</p>
                                     <p class="mb-0">Subtotal: {{ settings.currency }}{{ item.subtotal }}</p>
                                 </div>
                             </div>
@@ -70,13 +70,13 @@
                         <div class="col-md-4">
                             <!-- Order Summary -->
                             <div class="order-summary bg-light p-3 rounded">
-                                <h6 class="mb-3">Order Summary</h6>
+                                <h6 class="mb-3">Resumen del pedido</h6>
                                 <div class="d-flex justify-content-between mb-2">
-                                    <span>Items Total:</span>
+                                    <span>Subtotal:</span>
                                     <span>{{ settings.currency }}{{ order.total_amount }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-2">
-                                    <span>Delivery Charge:</span>
+                                    <span>Envío:</span>
                                     <span>{{ settings.currency }}{{ order.delivery_charge }}</span>
                                 </div>
                                 <hr>
@@ -88,7 +88,7 @@
 
                             <!-- Delivery Address -->
                             <div class="delivery-info bg-light p-3 rounded mt-3">
-                                <h6 class="mb-2">Delivery Address</h6>
+                                <h6 class="mb-2">Dirección de entrega</h6>
                                 <p class="mb-1"><strong>{{ order.address.user.name }}</strong></p>
                                 <p class="mb-1">{{ order.address.address }}</p>
                                 <p class="mb-1">{{ order.address.city }}, {{ order.address.postal_code }}</p>
@@ -99,7 +99,7 @@
                             {% if order.status == 'pending' %}
                             <div class="order-actions mt-3">
                                 <button class="btn btn-danger btn-sm cancel-order" data-id="{{ order.id }}">
-                                    Cancel Order
+                                    Cancelar pedido
                                 </button>
                             </div>
                             {% endif %}
@@ -112,9 +112,9 @@
     {% else %}
         <div class="empty-orders text-center py-5">
             <i class="uil uil-box" style="font-size: 50px;"></i>
-            <h3>No Orders Yet</h3>
-            <p>Looks like you haven't made any orders yet.</p>
-            <a href="{% url 'products:index' %}" class="btn btn-primary">Start Shopping</a>
+            <h3>Aún no tienes pedidos</h3>
+            <p>Parece que todavía no has hecho ningún pedido.</p>
+            <a href="{% url 'products:index' %}" class="btn btn-primary">Empezar a comprar</a>
         </div>
     {% endif %}
 </div>
@@ -128,13 +128,13 @@ document.querySelectorAll('.cancel-order').forEach(button => {
         const orderId = this.dataset.id;
         
         Swal.fire({
-            title: 'Cancel Order?',
-            text: "Are you sure you want to cancel this order?",
+            title: '¿Cancelar pedido?',
+            text: "¿Seguro que quieres cancelar este pedido?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#dc3545',
             cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Yes, cancel it!'
+            confirmButtonText: 'Sí, cancelarlo'
         }).then((result) => {
             if (result.isConfirmed) {
                 // Send cancel request
@@ -149,7 +149,7 @@ document.querySelectorAll('.cancel-order').forEach(button => {
                     if (data.error) {
                         Swal.fire('Error!', data.error, 'error');
                     } else {
-                        Swal.fire('Cancelled!', 'Your order has been cancelled.', 'success')
+                        Swal.fire('Cancelado', 'Tu pedido ha sido cancelado.', 'success')
                         .then(() => {
                             window.location.reload();
                         });

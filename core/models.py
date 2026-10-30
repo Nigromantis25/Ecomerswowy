@@ -8,7 +8,7 @@ CURRENCY_CHOICES = [
 
 class SiteSettings(models.Model):
     # General Settings
-    site_name = models.CharField(max_length=100, default="WOWY")
+    site_name = models.CharField(max_length=100, default="1807.studio")
     site_logo = models.ImageField(upload_to="site/", null=True, blank=True)
     favicon = models.ImageField(upload_to="site/", null=True, blank=True)
     contact_email = models.EmailField(null=True, blank=True)
@@ -34,7 +34,10 @@ class SiteSettings(models.Model):
 
     @classmethod
     def load(cls):
-        obj, created = cls.objects.get_or_create(pk=1)
+        obj, _ = cls.objects.get_or_create(pk=1, defaults={"site_name": "1807.studio"})
+        if not obj.site_name or obj.site_name == "WOWY":
+            obj.site_name = "1807.studio"
+            obj.save(update_fields=["site_name"])
         return obj
 
     def update_general_settings(self, **kwargs):

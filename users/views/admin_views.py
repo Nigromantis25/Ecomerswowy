@@ -32,6 +32,7 @@ def is_admin(user):
 
 
 @login_required
+@user_passes_test(is_admin)
 def admin_dashboard(request):
     today = timezone.now().date()
     current_year = today.year
@@ -70,6 +71,7 @@ def admin_dashboard(request):
 
 
 @login_required
+@user_passes_test(is_admin)
 def admin_orders(request):
     # Get filter parameters
     search_query = request.GET.get("search", "")
@@ -123,6 +125,7 @@ def admin_order_detail(request, order_id):
 
 
 @login_required
+@user_passes_test(is_admin)
 def admin_order_edit(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, "users/admin/orders/edit.html", {"order": order})
@@ -446,6 +449,7 @@ def admin_product_image_delete(request, image_id):
 
 
 @login_required
+@user_passes_test(is_admin)
 def update_order_status(request, order_id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to perform this action")
@@ -466,6 +470,7 @@ def update_order_status(request, order_id):
 
 
 @login_required
+@user_passes_test(is_admin)
 def generate_order_pdf(request, order_id):
     if not request.user.is_superuser:
         messages.error(request, "You are not authorized to perform this action")

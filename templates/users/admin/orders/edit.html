@@ -1,60 +1,60 @@
 {% extends 'users/admin/base.html' %}
 
-{% block admin_title %}Edit Order #{{ order.id }}{% endblock %}
+{% block admin_title %}Editar pedido #{{ order.id }}{% endblock %}
 
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Orders</h2>
+        <h2 class="mt-30 page-title">Pedidos</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.orders' %}">Orders</a></li>
-            <li class="breadcrumb-item active">Order #{{ order.order_number }}</li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.orders' %}">Pedidos</a></li>
+            <li class="breadcrumb-item active">Pedido #{{ order.order_number }}</li>
         </ol>
         <div class="row">
             <div class="col-xl-12 col-md-12">
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h2 class="title1458">Invoice</h2>
-                        <span class="order-id">Order #{{ order.order_number }}</span>
+                        <h2 class="title1458">Factura</h2>
+                        <span class="order-id">Pedido #{{ order.order_number }}</span>
                         <a href="{% url 'users:admin.orders.pdf' order.id %}" class="btn btn-primary float-right ml-2">
-                            <i class="uil uil-download-alt"></i> Download PDF
+                            <i class="uil uil-download-alt"></i> Descargar PDF
                         </a>
                     </div>
                     <div class="invoice-content">
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="ordr-date">
-                                    <b>Order Date:</b> {{ order.created|date:"d M Y" }}
+                                    <b>Fecha del pedido:</b> {{ order.created|date:"d M Y" }}
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="ordr-date">
-                                    <b>Customer:</b><br>
-                                    Name: {{ order.user.name }}<br>
-                                    Email: {{ order.user.email }}
+                                    <b>Cliente:</b><br>
+                                    Nombre: {{ order.user.name }}<br>
+                                    Correo: {{ order.user.email }}
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="order-payment-dt">
                                     <div class="order-payment-left-text">
-                                        <b>Payment Method:</b> {{ order.readable_payment_method|title }}
+                                        <b>Método de pago:</b> {{ order.readable_payment_method|title }}
                                     </div>
                                     <div class="order-payment-left-text">
-                                        <b>Payment Status:</b> {{ order.payment_status|title }}
+                                        <b>Estado del pago:</b> {{ order.payment_status|title }}
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6">
                                 <div class="ordr-date right-text">
-                                    <b>Delivery Address:</b><br>
+                                    <b>Dirección de entrega:</b><br>
                                     {{ order.shipping_address|linebreaksbr }}
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="card card-static-2 mb-30 mt-30">
                                     <div class="card-title-2">
-                                        <h4>Order Items</h4>
+                                        <h4>Artículos del pedido</h4>
                                     </div>
                                     <div class="card-body-table">
                                         <div class="table-responsive">
@@ -62,9 +62,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th style="width:130px">#</th>
-                                                        <th>Item</th>
-                                                        <th style="width:150px" class="text-center">Price</th>
-                                                        <th style="width:150px" class="text-center">Qty</th>
+                                                        <th>Artículo</th>
+                                                        <th style="width:150px" class="text-center">Precio</th>
+                                                        <th style="width:150px" class="text-center">Cant.</th>
                                                         <th style="width:100px" class="text-center">Total</th>
                                                     </tr>
                                                 </thead>
@@ -92,7 +92,7 @@
                             <div class="col-lg-5">
                                 <div class="order-total-dt">
                                     <div class="order-total-left-text">
-                                        Sub Total
+                                        Subtotal
                                     </div>
                                     <div class="order-total-right-text">
                                         {{ settings.currency }}{{ order.total_amount }}
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="order-total-dt">
                                     <div class="order-total-left-text">
-                                        Delivery Fees
+                                        Gastos de envío
                                     </div>
                                     <div class="order-total-right-text">
                                         {{ settings.currency }}{{ order.delivery_charge|default:"0" }}
@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="order-total-dt">
                                     <div class="order-total-left-text fsz-18">
-                                        Total Amount
+                                        Monto total
                                     </div>
                                     <div class="order-total-right-text fsz-18">
                                         {{ settings.currency }}{{ order.grand_total }}
@@ -120,17 +120,17 @@
                                 <form method="POST" action="{% url 'users:admin.orders.update_status' order.id %}">
                                     {% csrf_token %}
                                     <div class="select-status">
-                                        <label for="status">Status*</label>
+                                        <label for="status">Estado*</label>
                                         <div class="input-group">
                                             <select id="status" name="status" class="custom-select">
-                                                <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pending</option>
-                                                <option value="processing" {% if order.status == 'processing' %}selected{% endif %}>Processing</option>
-                                                <option value="shipped" {% if order.status == 'shipped' %}selected{% endif %}>Shipped</option>
-                                                <option value="delivered" {% if order.status == 'delivered' %}selected{% endif %}>Delivered</option>
-                                                <option value="cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                                                <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pendiente</option>
+                                                <option value="processing" {% if order.status == 'processing' %}selected{% endif %}>En proceso</option>
+                                                <option value="shipped" {% if order.status == 'shipped' %}selected{% endif %}>Enviado</option>
+                                                <option value="delivered" {% if order.status == 'delivered' %}selected{% endif %}>Entregado</option>
+                                                <option value="cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>Cancelado</option>
                                             </select>
                                             <div class="input-group-append">
-                                                <button class="status-btn hover-btn" type="submit">Update Status</button>
+                                                <button class="status-btn hover-btn" type="submit">Actualizar estado</button>
                                             </div>
                                         </div>
                                     </div>

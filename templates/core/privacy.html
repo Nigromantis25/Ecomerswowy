@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Privacy Policy{% endblock %}
+{% block title %}Política de privacidad{% endblock %}
 
 {% block content %}
 <div class="wrapper">
@@ -10,8 +10,8 @@
                 <div class="col-md-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Privacy Policy</li>
+                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Política de privacidad</li>
                         </ol>
                     </nav>
                 </div>
@@ -23,81 +23,81 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="privacy-content-wrapper">
-                        <h2>Privacy Policy</h2>
-                        <p class="last-updated">Last updated: {{ settings.privacy_last_updated|date:"F d, Y" }}</p>
+                        <h2>Política de privacidad</h2>
+                        <p class="last-updated">Última actualización: {{ settings.privacy_last_updated|date:"d/m/Y" }}</p>
 
                         <section class="privacy-section">
-                            <h3>1. Information We Collect</h3>
-                            <p>We collect information that you provide directly to us, including:</p>
+                            <h3>1. Información que recopilamos</h3>
+                            <p>Recopilamos la información que nos proporcionas directamente, incluyendo:</p>
                             <ul>
-                                <li>Name and contact information</li>
-                                <li>Billing and shipping addresses</li>
-                                <li>Payment information</li>
-                                <li>Order history</li>
-                                <li>Account preferences</li>
+                                <li>Nombre e información de contacto</li>
+                                <li>Direcciones de facturación y envío</li>
+                                <li>Información de pago</li>
+                                <li>Historial de pedidos</li>
+                                <li>Preferencias de la cuenta</li>
                             </ul>
                         </section>
 
                         <section class="privacy-section">
-                            <h3>2. How We Use Your Information</h3>
-                            <p>We use the information we collect to:</p>
+                            <h3>2. Cómo usamos tu información</h3>
+                            <p>Usamos la información que recopilamos para:</p>
                             <ul>
-                                <li>Process your orders and payments</li>
-                                <li>Communicate with you about orders and services</li>
-                                <li>Send you marketing communications (with your consent)</li>
-                                <li>Improve our services and user experience</li>
-                                <li>Protect against fraud and unauthorized transactions</li>
+                                <li>Procesar tus pedidos y pagos</li>
+                                <li>Comunicarnos contigo sobre pedidos y servicios</li>
+                                <li>Enviarte comunicaciones de marketing (con tu consentimiento)</li>
+                                <li>Mejorar nuestros servicios y la experiencia del usuario</li>
+                                <li>Protegernos contra fraudes y transacciones no autorizadas</li>
                             </ul>
                         </section>
 
                         <section class="privacy-section">
-                            <h3>3. Information Sharing</h3>
-                            <p>We do not sell your personal information. We share your information only with:</p>
+                            <h3>3. Compartición de información</h3>
+                            <p>No vendemos tu información personal. Compartimos tu información solo con:</p>
                             <ul>
-                                <li>Payment processors to complete transactions</li>
-                                <li>Delivery partners to fulfill orders</li>
-                                <li>Service providers who assist our operations</li>
-                                <li>Law enforcement when required by law</li>
+                                <li>Procesadores de pago para completar transacciones</li>
+                                <li>Socios de entrega para cumplir pedidos</li>
+                                <li>Proveedores de servicios que apoyan nuestras operaciones</li>
+                                <li>Autoridades cuando lo exija la ley</li>
                             </ul>
                         </section>
 
                         <section class="privacy-section">
-                            <h3>4. Data Security</h3>
-                            <p>We implement appropriate security measures to protect your personal information, including:</p>
+                            <h3>4. Seguridad de los datos</h3>
+                            <p>Implementamos medidas de seguridad adecuadas para proteger tu información personal, incluyendo:</p>
                             <ul>
-                                <li>Encryption of sensitive data</li>
-                                <li>Secure payment processing</li>
-                                <li>Regular security assessments</li>
-                                <li>Limited staff access to personal data</li>
+                                <li>Cifrado de datos sensibles</li>
+                                <li>Procesamiento seguro de pagos</li>
+                                <li>Evaluaciones regulares de seguridad</li>
+                                <li>Acceso limitado del personal a los datos personales</li>
                             </ul>
                         </section>
 
                         <section class="privacy-section">
-                            <h3>5. Your Rights</h3>
-                            <p>You have the right to:</p>
+                            <h3>5. Tus derechos</h3>
+                            <p>Tienes derecho a:</p>
                             <ul>
-                                <li>Access your personal information</li>
-                                <li>Correct inaccurate data</li>
-                                <li>Request deletion of your data</li>
-                                <li>Opt-out of marketing communications</li>
-                                <li>Export your data</li>
+                                <li>Acceder a tu información personal</li>
+                                <li>Corregir datos incorrectos</li>
+                                <li>Solicitar la eliminación de tus datos</li>
+                                <li>Optar por no recibir comunicaciones de marketing</li>
+                                <li>Exportar tus datos</li>
                             </ul>
                         </section>
 
                         <section class="privacy-section">
-                            <h3>6. Cookies and Tracking</h3>
-                            <p>We use cookies and similar technologies to:</p>
+                            <h3>6. Cookies y seguimiento</h3>
+                            <p>Usamos cookies y tecnologías similares para:</p>
                             <ul>
-                                <li>Remember your preferences</li>
-                                <li>Maintain your shopping cart</li>
-                                <li>Analyze site usage</li>
-                                <li>Personalize your experience</li>
+                                <li>Recordar tus preferencias</li>
+                                <li>Mantener tu carrito de compra</li>
+                                <li>Analizar el uso del sitio</li>
+                                <li>Personalizar tu experiencia</li>
                             </ul>
                         </section>
 
                         <section class="privacy-section">
-                            <h3>7. Contact Us</h3>
-                            <p>If you have questions about this Privacy Policy, please contact us at:</p>
+                            <h3>7. Contáctanos</h3>
+                            <p>Si tienes preguntas sobre esta política de privacidad, contáctanos en:</p>
                             <div class="contact-info">
                                 <p>Email: {{ settings.contact_email }}</p>
                                 <p>Phone: {{ settings.contact_phone }}</p>

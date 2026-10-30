@@ -1,15 +1,20 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model, authenticate
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
 
 class UserLoginForm(forms.Form):
-    email = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={"class": "form-control", "placeholder": "Email address"}
+    email = forms.CharField(
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Correo o nombre de usuario",
+            }
         )
     )
     password = forms.CharField(
@@ -26,8 +31,17 @@ class UserLoginForm(forms.Form):
         if email and password:
             user = authenticate(username=email, password=password)
             if user is None:
-                raise ValidationError("Invalid email or password.")
+                try:
+                    account = User.objects.get(username__iexact=email)
+                except User.DoesNotExist:
+                    account = None
+                if account is not None:
+                    user = authenticate(username=account.email, password=password)
+            if user is None:
+                raise ValidationError("Invalid username/email or password.")
             self.user = user  # Store the user for get_user method
+        elif not email or not password:
+            raise ValidationError("Enter a username/email and password.")
             
         return cleaned_data
 
@@ -36,13 +50,24 @@ class UserLoginForm(forms.Form):
 
 
 class UserRegistrationForm(UserCreationForm):
+    username = forms.CharField(
+        max_length=150,
+        required=True,
+        validators=[UnicodeUsernameValidator()],
+    )
     email = forms.EmailField(required=True)
     name = forms.CharField(required=True)
     phone = forms.CharField(required=True)
 
     class Meta:
         model = get_user_model()
-        fields = ("name", "email", "phone", "password1", "password2")
+        fields = ("name", "username", "email", "phone", "password1", "password2")
+
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        if get_user_model().objects.filter(username__iexact=username).exists():
+            raise forms.ValidationError("This username is already registered.")
+        return username
 
     def clean_email(self):
         email = self.cleaned_data.get("email")

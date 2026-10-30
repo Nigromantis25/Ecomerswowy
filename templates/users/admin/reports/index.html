@@ -3,37 +3,37 @@
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Reports</h2>
+        <h2 class="mt-30 page-title">Reportes</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Reports</li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item active">Reportes</li>
         </ol>
         <div class="row">
             <div class="col-lg-4 col-md-5">
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h4>Report Filters</h4>
+                        <h4>Filtros del reporte</h4>
                     </div>
                     <div class="card-body-table">
                         <form method="GET" class="news-content-right pd-20">
                             <div class="form-group">
-                                <label class="form-label">Report Type*</label>
+                                <label class="form-label">Tipo de reporte*</label>
                                 <select name="type" class="form-control">
-                                    <option value="sales" {% if report_type == 'sales' %}selected{% endif %}>Sales Report</option>
-                                    <option value="products" {% if report_type == 'products' %}selected{% endif %}>Product Performance</option>
-                                    <option value="customers" {% if report_type == 'customers' %}selected{% endif %}>Customer Analysis</option>
-                                    <option value="payment" {% if report_type == 'payment' %}selected{% endif %}>Payment Methods</option>
+                                    <option value="sales" {% if report_type == 'sales' %}selected{% endif %}>Reporte de ventas</option>
+                                    <option value="products" {% if report_type == 'products' %}selected{% endif %}>Rendimiento de productos</option>
+                                    <option value="customers" {% if report_type == 'customers' %}selected{% endif %}>Análisis de clientes</option>
+                                    <option value="payment" {% if report_type == 'payment' %}selected{% endif %}>Métodos de pago</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Start Date</label>
+                                <label class="form-label">Fecha de inicio</label>
                                 <input type="date" name="start_date" class="form-control" value="{{ start_date|default:'' }}">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">End Date</label>
+                                <label class="form-label">Fecha final</label>
                                 <input type="date" name="end_date" class="form-control" value="{{ end_date|default:'' }}">
                             </div>
-                            <button class="save-btn hover-btn" type="submit">Generate Report</button>
+                            <button class="save-btn hover-btn" type="submit">Generar reporte</button>
                         </form>
                     </div>
                 </div>

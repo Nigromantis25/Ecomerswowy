@@ -9,8 +9,8 @@
                 <div class="col-md-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">{% block dashboard_title %}Dashboard{% endblock %}</li>
+                            <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{% block dashboard_title %}Panel{% endblock %}</li>
                         </ol>
                     </nav>
                 </div>
@@ -59,22 +59,22 @@
                     <div class="left-side-tabs">
                         <div class="dashboard-left-links">
                             <a href="{% url 'users:dashboard.index' %}" class="user-item {% if request.resolver_match.url_name == 'dashboard.index' %}active{% endif %}">
-                                <i class="uil uil-apps"></i>Dashboard
+                                <i class="uil uil-apps"></i>Panel
                             </a>
                             <a href="{% url 'users:dashboard.profile' %}" class="user-item {% if request.resolver_match.url_name == 'dashboard.profile' %}active{% endif %}">
-                                <i class="uil uil-user"></i>My Profile
+                                <i class="uil uil-user"></i>Mi perfil
                             </a>
                             <a href="{% url 'users:dashboard.orders' %}" class="user-item {% if request.resolver_match.url_name == 'dashboard.orders' %}active{% endif %}">
-                                <i class="uil uil-box"></i>My Orders
+                                <i class="uil uil-box"></i>Mis pedidos
                             </a>
                             <a href="{% url 'users:dashboard.wishlist' %}" class="user-item {% if request.resolver_match.url_name == 'dashboard.wishlist' %}active{% endif %}">
-                                <i class="uil uil-heart"></i>Shopping Wishlist
+                                <i class="uil uil-heart"></i>Lista de deseos
                             </a>
                             <a href="{% url 'users:dashboard.addresses' %}" class="user-item {% if request.resolver_match.url_name == 'dashboard.addresses' %}active{% endif %}">
-                                <i class="uil uil-location-point"></i>My Addresses
+                                <i class="uil uil-location-point"></i>Mis direcciones
                             </a>
                             <a href="#" class="user-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="uil uil-sign-out-alt"></i>Logout
+                                <i class="uil uil-sign-out-alt"></i>Cerrar sesión
                             </a>
                         </div>
                     </div>

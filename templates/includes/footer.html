@@ -28,10 +28,10 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="second-row-item">
-                        <h4>Categories</h4>
+                        <h4>Categorías</h4>
                         <ul>
-                            <li><a href="{% url 'products:index' %}">All Products</a></li>
-                            <li><a href="{% url 'products:featured' %}">Featured Products</a></li>
+                            <li><a href="{% url 'products:index' %}">Todos los productos</a></li>
+                            <li><a href="{% url 'products:featured' %}">Productos destacados</a></li>
                             {% for category in categories %}
                                 <li><a href="{% url 'products:category' category.slug %}">{{ category.name }}</a></li>
                             {% endfor %}
@@ -40,40 +40,40 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="second-row-item">
-                        <h4>Useful Links</h4>
+                        <h4>Enlaces útiles</h4>
                         <ul>
-                            <li><a href="{% url 'core:about' %}">About Us</a></li>
-                            <li><a href="{% url 'core:contact' %}">Contact Us</a></li>
-                            <li><a href="{% url 'core:terms' %}">Terms & Conditions</a></li>
-                            <li><a href="{% url 'core:privacy' %}">Privacy Policy</a></li>
-                            <li><a href="{% url 'core:faq' %}">FAQ</a></li>
+                            <li><a href="{% url 'core:about' %}">Sobre nosotros</a></li>
+                            <li><a href="{% url 'core:contact' %}">Contacto</a></li>
+                            <li><a href="{% url 'core:terms' %}">Términos y condiciones</a></li>
+                            <li><a href="{% url 'core:privacy' %}">Política de privacidad</a></li>
+                            <li><a href="{% url 'core:faq' %}">Preguntas frecuentes</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="second-row-item">
-                        <h4>Account</h4>
+                        <h4>Cuenta</h4>
                         <ul>
                             {% if user.is_authenticated %}
-                                <li><a href="{% url 'users:dashboard.profile' %}">Profile</a></li>
-                                <li><a href="{% url 'users:dashboard.orders' %}">My Orders</a></li>
-                                <li><a href="{% url 'users:dashboard.wishlist' %}">My Wishlist</a></li>
-                                <li><a href="{% url 'users:dashboard.addresses' %}">My Addresses</a></li>
+                                <li><a href="{% url 'users:dashboard.profile' %}">Perfil</a></li>
+                                <li><a href="{% url 'users:dashboard.orders' %}">Mis pedidos</a></li>
+                                <li><a href="{% url 'users:dashboard.wishlist' %}">Lista de deseos</a></li>
+                                <li><a href="{% url 'users:dashboard.addresses' %}">Mis direcciones</a></li>
                                 <li>
                                     <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        Logout
+                                        Cerrar sesión
                                     </a>
                                 </li>
                             {% else %}
-                                <li><a href="{% url 'users:login' %}">Sign In</a></li>
-                                <li><a href="{% url 'users:signup' %}">Sign Up</a></li>
+                                <li><a href="{% url 'users:login' %}">Iniciar sesión</a></li>
+                                <li><a href="{% url 'users:signup' %}">Registrarse</a></li>
                             {% endif %}
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="second-row-item-app">
-                        <h4>Download App</h4>
+                        <h4>Descarga la aplicación</h4>
                         <ul>
                             <li>
                                 <a href="#"><img src="{% static 'frontend/images/download-1.svg' %}" alt="" style="width: 50%; height: auto;"></a>
@@ -84,7 +84,7 @@
                         </ul>
                     </div>
                     <div class="second-row-item-payment">
-                        <h4>Payment Method</h4>
+                        <h4>Métodos de pago</h4>
                         <div class="footer-payments">
                             <ul id="paypal-gateway" class="financial-institutes">
                                 <li class="financial-institutes__logo">
@@ -103,15 +103,15 @@
                 <div class="col-md-12">
                     <div class="footer-bottom-links">
                         <ul>
-                            <li><a href="{% url 'core:about' %}">About</a></li>
-                            <li><a href="{% url 'core:contact' %}">Contact</a></li>
-                            <li><a href="{% url 'core:privacy' %}">Privacy Policy</a></li>
-                            <li><a href="{% url 'core:terms' %}">Terms & Conditions</a></li>
-                            <li><a href="{% url 'core:refund' %}">Refund & Return Policy</a></li>
+                            <li><a href="{% url 'core:about' %}">Sobre nosotros</a></li>
+                            <li><a href="{% url 'core:contact' %}">Contacto</a></li>
+                            <li><a href="{% url 'core:privacy' %}">Política de privacidad</a></li>
+                            <li><a href="{% url 'core:terms' %}">Términos y condiciones</a></li>
+                            <li><a href="{% url 'core:refund' %}">Política de devoluciones</a></li>
                         </ul>
                     </div>
                     <div class="copyright-text">
-                        <i class="uil uil-copyright"></i>Copyright {% now 'Y' %} <b>WOWY</b>. All rights reserved
+                        <i class="uil uil-copyright"></i>Copyright {% now 'Y' %} <b>1807.studio</b>. Todos los derechos reservados
                     </div>
                 </div>
             </div>

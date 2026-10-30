@@ -1,35 +1,35 @@
 {% extends 'users/admin/base.html' %}
 
-{% block admin_title %}Add Offer{% endblock %}
+{% block admin_title %}Agregar oferta{% endblock %}
 
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Offers</h2>
+        <h2 class="mt-30 page-title">Ofertas</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'users:admin_offers' %}">Offers</a></li>
-            <li class="breadcrumb-item active">Add Offer</li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin_offers' %}">Ofertas</a></li>
+            <li class="breadcrumb-item active">Agregar oferta</li>
         </ol>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h4>Add New Offer</h4>
+                        <h4>Agregar nueva oferta</h4>
                     </div>
                     <div class="card-body-table ml-3 mr-3">
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label>Title*</label>
+                                <label>Título*</label>
                                 <input type="text" class="form-control" name="title" required>
                             </div>
                             <div class="form-group">
-                                <label>Description*</label>
+                                <label>Descripción*</label>
                                 <textarea class="form-control" name="description" rows="7" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Offer Type*</label>
+                                <label>Tipo de oferta*</label>
                                 <select class="form-control" name="offer_type" id="offer_type" required>
                                     {% for type_value, type_label in offer_types %}
                                         <option value="{{ type_value }}">{{ type_label }}</option>
@@ -37,45 +37,45 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Discount Value*</label>
+                                <label>Valor del descuento*</label>
                                 <input type="number" class="form-control" name="discount_value" step="0.01" min="0" required>
                             </div>
                             <div class="form-group buy-get-fields" style="display: none;">
-                                <label>Buy Quantity*</label>
+                                <label>Cantidad a comprar*</label>
                                 <input type="number" class="form-control" name="buy_quantity" min="1" value="1">
                             </div>
                             <div class="form-group buy-get-fields" style="display: none;">
-                                <label>Get Quantity*</label>
+                                <label>Cantidad a recibir*</label>
                                 <input type="number" class="form-control" name="get_quantity" min="0" value="0">
                             </div>
                             <div class="form-group">
-                                <label>Minimum Purchase Amount</label>
+                                <label>Monto de compra mínimo</label>
                                 <input type="number" class="form-control" name="min_purchase_amount" step="0.01" min="0" value="0">
                             </div>
                             <div class="form-group">
-                                <label>Usage Limit (0 for unlimited)</label>
+                                <label>Límite de uso (0 para ilimitado)</label>
                                 <input type="number" class="form-control" name="usage_limit" min="0" value="0">
                             </div>
                             <div class="form-group">
-                                <label>Start Date*</label>
+                                <label>Fecha de inicio*</label>
                                 <input type="datetime-local" class="form-control" name="start_date" required>
                             </div>
                             <div class="form-group">
-                                <label>End Date*</label>
+                                <label>Fecha final*</label>
                                 <input type="datetime-local" class="form-control" name="end_date" required>
                             </div>
                             <div class="form-group">
-                                <label>Status*</label>
+                                <label>Estado*</label>
                                 <select class="form-control" name="status" required>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
+                                    <option value="active">Activa</option>
+                                    <option value="inactive">Inactiva</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Offer Image</label>
+                                <label>Imagen de la oferta</label>
                                 <input type="file" class="form-control" name="image">
                             </div>
-                            <button type="submit" class="save-btn hover-btn">Add Offer</button>
+                            <button type="submit" class="save-btn hover-btn">Agregar oferta</button>
                         </form>
                     </div>
                 </div>

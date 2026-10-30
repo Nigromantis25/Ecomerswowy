@@ -1,13 +1,13 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <title> WOWY | {% block title %} E-commerce {% endblock %} </title>
+    <title> 1807.studio | {% block title %} E-commerce {% endblock %} </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'frontend/images/fav.png' %}" type="image/x-icon">
@@ -59,13 +59,13 @@
 
 <div class="bs-canvas bs-canvas-right position-fixed bg-cart h-100">
     <div class="bs-canvas-header side-cart-header p-3 ">
-        <div class="d-inline-block main-cart-title">My Cart <span>(0 Items)</span></div>
-        <button type="button" class="bs-canvas-close close" aria-label="Close"><i class="uil uil-multiply"></i></button>
+        <div class="d-inline-block main-cart-title">Mi carrito <span>(0 artículos)</span></div>
+        <button type="button" class="bs-canvas-close close" aria-label="Cerrar"><i class="uil uil-multiply"></i></button>
     </div> 
     <div class="bs-canvas-body">
         <div class="cart-top-total">
             <div class="cart-total-dil">
-                <h4>Shopping Cart</h4>
+                <h4>Carrito de compra</h4>
             </div>
         </div>
         <div class="side-cart-items">
@@ -78,7 +78,7 @@
             <span>{{ settings.currency }}0.00</span>
         </div>
         <div class="checkout-cart">
-            <a href="{% url 'cart:checkout' %}" class="cart-checkout-btn hover-btn">Proceed to Checkout</a>
+            <a href="{% url 'cart:checkout' %}" class="cart-checkout-btn hover-btn">Finalizar compra</a>
         </div>
     </div>
 </div>

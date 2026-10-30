@@ -6,10 +6,10 @@
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Product Details</h2>
+        <h2 class="mt-30 page-title">Detalles del producto</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'users:admin_products' %}">Products</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin_products' %}">Productos</a></li>
             <li class="breadcrumb-item active">{{ product.name }}</li>
         </ol>
         <div class="row">
@@ -17,10 +17,10 @@
             <div class="col-lg-5 col-md-6">
                 <div class="card card-static-2 mb-30">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Basic Information</h5>
+                        <h5 class="mb-0">Información básica</h5>
                         <div>
-                            <a href="{% url 'products:detail' product.slug %}" class="btn btn-secondary btn-sm" target="_blank">View</a>
-                            <a href="{% url 'users:admin_product_edit' product.id %}" class="btn btn-primary btn-sm ml-2">Edit</a>
+                            <a href="{% url 'products:detail' product.slug %}" class="btn btn-secondary btn-sm" target="_blank">Ver</a>
+                            <a href="{% url 'users:admin_product_edit' product.id %}" class="btn btn-primary btn-sm ml-2">Editar</a>
                         </div>
                     </div>
                     <div class="card-body-table">
@@ -34,15 +34,15 @@
                             </div>
                             <div class="shopowner-dts">
                                 <div class="shopowner-dt-list">
-                                    <span class="left-dt">Name</span>
+                                    <span class="left-dt">Nombre</span>
                                     <span class="right-dt">{{ product.name }}</span>
                                 </div>
                                 <div class="shopowner-dt-list">
-                                    <span class="left-dt">Category</span>
+                                    <span class="left-dt">Categoría</span>
                                     <span class="right-dt">{{ product.category.name }}</span>
                                 </div>
                                 <div class="shopowner-dt-list">
-                                    <span class="left-dt">Brand</span>
+                                    <span class="left-dt">Marca</span>
                                     <span class="right-dt">{{ product.brand|default:"N/A" }}</span>
                                 </div>
                                 <div class="shopowner-dt-list">
@@ -50,7 +50,7 @@
                                     <span class="right-dt">{{ product.sku }}</span>
                                 </div>
                                 <div class="shopowner-dt-list">
-                                    <span class="left-dt">Barcode</span>
+                                    <span class="left-dt">Código de barras</span>
                                     <span class="right-dt">{{ product.barcode|default:"N/A" }}</span>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
             <div class="col-lg-7 col-md-6">
                 <div class="card card-static-2 mb-30">
                     <div class="card-header">
-                        <h5>Pricing & Inventory</h5>
+                        <h5>Precio e inventario</h5>
                     </div>
                     <div class="card-body-table">
                         <div class="shopowner-content-left pd-20">
@@ -71,11 +71,11 @@
                                 <div class="col-md-6">
                                     <div class="shopowner-dts">
                                         <div class="shopowner-dt-list">
-                                            <span class="left-dt">Original Price</span>
+                                            <span class="left-dt">Precio original</span>
                                             <span class="right-dt">${{ product.original_price }}</span>
                                         </div>
                                         <div class="shopowner-dt-list">
-                                            <span class="left-dt">Selling Price</span>
+                                            <span class="left-dt">Precio de venta</span>
                                             <span class="right-dt">${{ product.selling_price }}</span>
                                         </div>
                                         <div class="shopowner-dt-list">
@@ -83,7 +83,7 @@
                                             <span class="right-dt">{{ product.stock }} {{ product.get_stock_unit_display }}</span>
                                         </div>
                                         <div class="shopowner-dt-list">
-                                            <span class="left-dt">Minimum Stock</span>
+                                            <span class="left-dt">Stock mínimo</span>
                                             <span class="right-dt">{{ product.minimum_stock }}</span>
                                         </div>
                                     </div>
@@ -91,32 +91,32 @@
                                 <div class="col-md-6">
                                     <div class="shopowner-dts">
                                         <div class="shopowner-dt-list">
-                                            <span class="left-dt">Status</span>
+                                            <span class="left-dt">Estado</span>
                                             <span class="right-dt">
                                                 {% if product.is_active %}
-                                                    <span class="badge badge-success">Active</span>
+                                                    <span class="badge badge-success">Activo</span>
                                                 {% else %}
-                                                    <span class="badge badge-danger">Inactive</span>
+                                                    <span class="badge badge-danger">Inactivo</span>
                                                 {% endif %}
                                             </span>
                                         </div>
                                         <div class="shopowner-dt-list">
-                                            <span class="left-dt">Featured</span>
+                                            <span class="left-dt">Destacado</span>
                                             <span class="right-dt">
                                                 {% if product.top_featured %}
-                                                    <span class="badge badge-primary">Yes</span>
+                                                    <span class="badge badge-primary">Sí</span>
                                                 {% else %}
                                                     <span class="badge badge-secondary">No</span>
                                                 {% endif %}
                                             </span>
                                         </div>
                                         <div class="shopowner-dt-list">
-                                            <span class="left-dt">Has Variants</span>
-                                            <span class="right-dt">{{ product.has_variants|yesno:"Yes,No" }}</span>
+                                            <span class="left-dt">Tiene variantes</span>
+                                            <span class="right-dt">{{ product.has_variants|yesno:"Sí,No" }}</span>
                                         </div>
                                         <div class="shopowner-dt-list">
-                                            <span class="left-dt">Free Shipping</span>
-                                            <span class="right-dt">{{ product.is_free_shipping|yesno:"Yes,No" }}</span>
+                                            <span class="left-dt">Envío gratuito</span>
+                                            <span class="right-dt">{{ product.is_free_shipping|yesno:"Sí,No" }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -125,17 +125,17 @@
                     </div>
                 </div>
 
-                <!-- Description Card -->
+                <!-- Card de descripción -->
                 <div class="card card-static-2 mb-30">
                     <div class="card-header">
-                        <h5>Description & Details</h5>
+                        <h5>Descripción y detalles</h5>
                     </div>
                     <div class="card-body">
-                        <h6>Main Description</h6>
+                        <h6>Descripción principal</h6>
                         <p>{{ product.description|linebreaks }}</p>
                         
                         {% if product.additional_details %}
-                            <h6>Additional Details</h6>
+                            <h6>Detalles adicionales</h6>
                             <p>{{ product.additional_details|linebreaks }}</p>
                         {% endif %}
                     </div>
@@ -144,7 +144,7 @@
                 <!-- SEO Information -->
                 <div class="card card-static-2 mb-30">
                     <div class="card-header">
-                        <h5>SEO Information</h5>
+                        <h5>Información de SEO</h5>
                     </div>
                     <div class="card-body">
                         <div class="shopowner-dts">

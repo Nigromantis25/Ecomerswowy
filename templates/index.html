@@ -11,7 +11,7 @@
                 </div>
                 <div class="category-model-content modal-content"> 
                     <div class="cate-header">
-                        <h4>Select Category</h4>
+                        <h4>Seleccionar categoría</h4>
                     </div>
                     <ul class="category-by-cat">
                         {% for category in categories %}
@@ -25,7 +25,7 @@
                             </li>
                         {% endfor %}
                     </ul>
-                    <a href="#" class="morecate-btn"><i class="uil uil-apps"></i>More Categories</a>
+                    <a href="#" class="morecate-btn"><i class="uil uil-apps"></i>Más categorías</a>
                 </div>
             </div>
         </div>
@@ -38,8 +38,8 @@
                     <div class="col-md-12">
                         <div class="main-title-tt">
                             <div class="main-title-left">
-                                <span> Shop By </span>
-                                <h2>Categories</h2>
+                                <span>Comprar por</span>
+                                <h2>Categorías</h2>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                 <div class="how-order-icon">
                                     <i class="uil uil-apps"></i>
                                 </div>
-                                <h4> No Category Available </h4>
+                                <h4>No hay categorías disponibles</h4>
                             </div>
                         </div>
                     {% endif %}
@@ -80,10 +80,10 @@
                     <div class="col-md-12">
                         <div class="main-title-tt">
                             <div class="main-title-left">
-                                <span>For You</span>
-                                <h2>Added new products</h2>
+                                <span>Para ti</span>
+                                <h2>Productos nuevos</h2>
                             </div>
-                            <a href="{% url 'products:index' %}" class="see-more-btn">See All</a>
+                            <a href="{% url 'products:index' %}" class="see-more-btn">Ver todos</a>
                         </div>
                     </div>
                     {% if products.count > 0 %}
@@ -102,7 +102,7 @@
                                 <div class="how-order-icon">
                                     <i class="uil uil-shopping-basket"></i>
                                 </div>
-                                <h4> No Product Available </h4>
+                                <h4>No hay productos disponibles</h4>
                             </div>
                         </div>
                     {% endif %}

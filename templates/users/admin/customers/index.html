@@ -1,25 +1,25 @@
 {% extends 'users/admin/base.html' %}
 
-{% block admin_title %}Customers{% endblock %}
+{% block admin_title %}Clientes{% endblock %}
 
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Customers</h2>
+        <h2 class="mt-30 page-title">Clientes</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Customers</li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item active">Clientes</li>
         </ol>
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h4>All Customers</h4>
+                        <h4>Todos los clientes</h4>
                         <div class="search-form">
                             <form action="" method="GET">
                                 <div class="input-group">
                                     <input type="text" class="form-control" name="search" 
-                                           placeholder="Search customers..." value="{{ search_query }}">
+                                           placeholder="Buscar clientes..." value="{{ search_query }}">
                                     <div class="input-group-append">
                                         <button class="btn btn-secondary" type="submit">
                                             <i class="fas fa-search"></i>
@@ -35,13 +35,13 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Nombre</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Orders</th>
-                                        <th>Total Spent</th>
-                                        <th>Joined</th>
-                                        <th>Action</th>
+                                        <th>Teléfono</th>
+                                        <th>Pedidos</th>
+                                        <th>Total gastado</th>
+                                        <th>Registrado</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,12 +56,12 @@
                                         <td>{{ customer.date_joined|date:"d M Y" }}</td>
                                         <td>
                                             <a href="{% url 'users:admin.customer_detail' customer.id %}" 
-                                               class="btn btn-sm btn-secondary">View Details</a>
+                                               class="btn btn-sm btn-secondary">Ver detalles</a>
                                         </td>
                                     </tr>
                                     {% empty %}
                                     <tr>
-                                        <td colspan="8" class="text-center">No customers found.</td>
+                                        <td colspan="8" class="text-center">No se encontraron clientes.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

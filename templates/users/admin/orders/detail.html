@@ -3,29 +3,29 @@
 {% block content %}
     <main>
         <div class="container-fluid">
-            <h2 class="mt-30 page-title">Orders</h2>
+            <h2 class="mt-30 page-title">Pedidos</h2>
             <ol class="breadcrumb mb-30">
-                <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'users:admin.orders' %}">Orders</a></li>
-                <li class="breadcrumb-item active">Order View</li>
+                <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'users:admin.orders' %}">Pedidos</a></li>
+                <li class="breadcrumb-item active">Vista del pedido</li>
             </ol>
             <div class="row">
                 <div class="col-xl-12 col-md-12">
                     <div class="card card-static-2 mb-30">
                         <div class="card-title-2">
-                            <h2 class="title1458">Invoice</h2>
-                            <span class="order-id">Order #{{ order.order_number }}</span> 
+                            <h2 class="title1458">Factura</h2>
+                            <span class="order-id">Pedido #{{ order.order_number }}</span> 
                         </div>
                         <div class="invoice-content">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="ordr-date">
-                                        <b>Order Date :</b> {{ order.created_at|date:"d M Y" }}
+                                        <b>Fecha del pedido:</b> {{ order.created_at|date:"d M Y" }}
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-6">
                                     <div class="ordr-date right-text">
-                                        <b>Delivery Address :</b><br>
+                                        <b>Dirección de entrega:</b><br>
                                         {{ order.shipping_address.street_address }},<br>
                                         {% if order.shipping_address.apartment %}{{ order.shipping_address.apartment }},<br>{% endif %}
                                         {{ order.shipping_address.city }},<br>
@@ -37,7 +37,7 @@
                                 <div class="col-lg-12">
                                     <div class="card card-static-2 mb-30 mt-30">
                                         <div class="card-title-2">
-                                            <h4>Order Items</h4>
+                                            <h4>Artículos del pedido</h4>
                                         </div>
                                         <div class="card-body-table">
                                             <div class="table-responsive">
@@ -45,9 +45,9 @@
                                                     <thead>
                                                         <tr>
                                                             <th style="width:130px">#</th>
-                                                            <th>Item</th>
-                                                            <th style="width:150px" class="text-center">Price</th>
-                                                            <th style="width:150px" class="text-center">Qty</th>
+                                                            <th>Artículo</th>
+                                                            <th style="width:150px" class="text-center">Precio</th>
+                                                            <th style="width:150px" class="text-center">Cant.</th>
                                                             <th style="width:100px" class="text-center">Total</th>
                                                         </tr>
                                                     </thead>
@@ -75,7 +75,7 @@
                                 <div class="col-lg-5">
                                     <div class="order-total-dt">
                                         <div class="order-total-left-text">
-                                            Sub Total
+                                            Subtotal
                                         </div>
                                         <div class="order-total-right-text">
                                             ${{ order.get_subtotal }}
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="order-total-dt">
                                         <div class="order-total-left-text">
-                                            Delivery Fees
+                                            Gastos de envío
                                         </div>
                                         <div class="order-total-right-text">
                                             ${{ order.shipping_cost }}
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="order-total-dt">
                                         <div class="order-total-left-text fsz-18">
-                                            Total Amount
+                                            Monto total
                                         </div>
                                         <div class="order-total-right-text fsz-18">
                                             ${{ order.get_total }}
@@ -101,7 +101,7 @@
                                 <div class="col-lg-7"></div>
                                 <div class="col-lg-5">
                                     <div class="select-status">
-                                        <label for="status">Status*</label>
+                                        <label for="status">Estado*</label>
                                         <div class="status-active">
                                             {{ order.status }}
                                         </div>

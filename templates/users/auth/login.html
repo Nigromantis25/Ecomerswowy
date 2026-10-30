@@ -1,13 +1,13 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=9">
-    <title> WOWY | {% block title %} E-commerce {% endblock %} </title>
+    <title> 1807.studio | {% block title %} E-commerce {% endblock %} </title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'frontend/images/fav.png' %}" type="image/x-icon">
@@ -53,9 +53,9 @@
                                             {% endfor %}
                                         </div>
                                     {% endif %}
-                                    <div class="form-title"><h6>Sign In</h6></div>
+                                    <div class="form-title"><h6>Iniciar sesión</h6></div>
                                     <div class="form-group pos_rel">
-                                        <input id="email" name="email" type="email" placeholder="Enter Email" class="form-control lgn_input" required="" value="{{ form.email.value|default:'' }}">
+                                        <input id="email" name="email" type="text" placeholder="Correo o nombre de usuario" class="form-control lgn_input" required="" value="{{ form.email.value|default:'' }}">
                                         <i class="uil uil-envelope lgn_icon"></i>
                                         {% if form.email.errors %}
                                             <div class="invalid-feedback">
@@ -64,7 +64,7 @@
                                         {% endif %}
                                     </div>
                                     <div class="form-group pos_rel">
-                                        <input id="password" name="password" type="password" placeholder="Enter Password" class="form-control lgn_input" required="">
+                                        <input id="password" name="password" type="password" placeholder="Introduce tu contraseña" class="form-control lgn_input" required="">
                                         <i class="uil uil-padlock lgn_icon"></i>
                                         {% if form.password.errors %}
                                             <div class="invalid-feedback">
@@ -72,14 +72,14 @@
                                             </div>
                                         {% endif %}
                                     </div>
-                                    <button class="login-btn hover-btn" type="submit">Sign In Now</button>
+                                    <button class="login-btn hover-btn" type="submit">Iniciar sesión</button>
                                 </form>
                             </div>
                             <div class="password-forgor">
-                                <a href="{% url 'users:forgot-password' %}">Forgot Password?</a>
+                                <a href="{% url 'users:forgot-password' %}">¿Olvidaste tu contraseña?</a>
                             </div>
                             <div class="signup-link">
-                                <p>Don't have an account? - <a href="{% url 'users:signup' %}">Sign Up Now</a></p>
+                                <p>¿No tienes una cuenta? <a href="{% url 'users:signup' %}">Regístrate ahora</a></p>
                             </div>
                         </div>
                     </div>

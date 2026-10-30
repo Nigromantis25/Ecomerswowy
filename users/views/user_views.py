@@ -31,8 +31,15 @@ class UserLoginView(FormView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
+            if request.user.is_superuser:
+                return redirect("users:admin.index")
             return redirect("core:home")
         return super().dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        if self.request.user.is_superuser:
+            return reverse_lazy("users:admin.index")
+        return reverse_lazy("core:home")
 
     def form_valid(self, form):
         user = form.get_user()

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.contrib.auth.models import AbstractUser
 from django_extensions.db.models import TimeStampedModel
 
@@ -6,7 +7,11 @@ from users.manager import CustomUserManager
 
 
 class User(AbstractUser):
-    username = None
+    username = models.CharField(
+        max_length=150,
+        unique=True,
+        validators=[UnicodeUsernameValidator()],
+    )
     first_name = None
     last_name = None
     name = models.CharField(max_length=255)

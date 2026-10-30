@@ -2,32 +2,32 @@
 
 {% load static %}
 
-{% block admin_title %}Categories{% endblock %}
-{% block admin_subtitle %}Manage Categories{% endblock %}
+{% block admin_title %}Categorías{% endblock %}
+{% block admin_subtitle %}Gestiona categorías{% endblock %}
 
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Categories</h2>
+        <h2 class="mt-30 page-title">Categorías</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Categories</li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item active">Categorías</li>
         </ol>
         <div class="row justify-content-between">
             <div class="col-lg-12">
-                <a href="{% url 'users:admin_category_add' %}" class="add-btn hover-btn">Add New</a>
+                <a href="{% url 'users:admin_category_add' %}" class="add-btn hover-btn">Agregar nueva</a>
             </div>
             <div class="col-lg-3 col-md-4">
                 <div class="bulk-section mt-30">
                     <div class="input-group">
                         <select id="action" name="action" class="form-control">
-                            <option selected>Bulk Actions</option>
-                            <option value="1">Active</option>
-                            <option value="2">Inactive</option>
-                            <option value="3">Delete</option>
+                            <option selected>Acciones masivas</option>
+                            <option value="1">Activo</option>
+                            <option value="2">Inactivo</option>
+                            <option value="3">Eliminar</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="status-btn hover-btn" type="submit">Apply</button>
+                            <button class="status-btn hover-btn" type="submit">Aplicar</button>
                         </div>
                     </div>
                 </div>
@@ -35,15 +35,15 @@
             <div class="col-lg-5 col-md-6">
                 <div class="bulk-section mt-30">
                     <div class="search-by-name-input">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Buscar">
                     </div>
                     <div class="input-group">
                         <select id="categeory" name="categeory" class="form-control">
-                            <option selected>Active</option>
-                            <option value="1">Inactive</option>
+                            <option selected>Activo</option>
+                            <option value="1">Inactivo</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="status-btn hover-btn" type="submit">Search Category</button>
+                            <button class="status-btn hover-btn" type="submit">Buscar categoría</button>
                         </div>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="card card-static-2 mt-30 mb-30">
                     <div class="card-title-2">
-                        <h4>All Categories</h4>
+                        <h4>Todas las categorías</h4>
                     </div>
                     <div class="card-body-table">
                         <div class="table-responsive">
@@ -88,7 +88,7 @@
                                         </td>
                                         <td class="action-btns">
                                             <a href="{% url 'users:admin_category_edit' category.id %}" class="edit-btn">
-                                                <i class="fas fa-edit"></i> Edit
+                                                <i class="fas fa-edit"></i> Editar
                                             </a>
                                         </td>
                                     </tr>

@@ -1,26 +1,26 @@
 {% extends 'users/admin/base.html' %}
 
-{% block admin_title %}Payment Settings{% endblock %}
+{% block admin_title %}Configuración de pagos{% endblock %}
 
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Payment Settings</h2>
+        <h2 class="mt-30 page-title">Configuración de pagos</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Payment Settings</li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item active">Configuración de pagos</li>
         </ol>
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h4>Payment Gateway Settings</h4>
+                        <h4>Configuración de pasarelas de pago</h4>
                     </div>
                     <div class="card-body-table ml-3 mr-3">
                         <form method="POST">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label class="form-label">Currency</label>
+                                <label class="form-label">Moneda</label>
                                 <select class="form-control" name="currency">
                                     {% for code, name in currencies %}
                                         <option value="{{ code }}" {% if settings.currency == code %}selected{% endif %}>
@@ -29,25 +29,25 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <h5 class="mt-4 mb-3">Stripe Settings</h5>
+                            <h5 class="mt-4 mb-3">Configuración de Stripe</h5>
                             <div class="form-group">
-                                <label class="form-label">Stripe Public Key</label>
+                                <label class="form-label">Clave pública de Stripe</label>
                                 <input type="text" class="form-control" name="stripe_public_key" value="{{ settings.stripe_public_key|default:'' }}">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Stripe Secret Key</label>
+                                <label class="form-label">Clave secreta de Stripe</label>
                                 <input type="password" class="form-control" name="stripe_secret_key" value="{{ settings.stripe_secret_key|default:'' }}">
                             </div>
-                            <h5 class="mt-4 mb-3">PayPal Settings</h5>
+                            <h5 class="mt-4 mb-3">Configuración de PayPal</h5>
                             <div class="form-group">
-                                <label class="form-label">PayPal Client ID</label>
+                                <label class="form-label">Client ID de PayPal</label>
                                 <input type="text" class="form-control" name="paypal_client_id" value="{{ settings.paypal_client_id|default:'' }}">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">PayPal Secret</label>
+                                <label class="form-label">Secreto de PayPal</label>
                                 <input type="password" class="form-control" name="paypal_secret" value="{{ settings.paypal_secret|default:'' }}">
                             </div>
-                            <button class="save-btn hover-btn" type="submit">Save Changes</button>
+                            <button class="save-btn hover-btn" type="submit">Guardar cambios</button>
                         </form>
                     </div>
                 </div>

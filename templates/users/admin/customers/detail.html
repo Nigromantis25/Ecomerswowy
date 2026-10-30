@@ -1,38 +1,38 @@
 {% extends 'users/admin/base.html' %}
 
-{% block admin_title %}Customer Details{% endblock %}
+{% block admin_title %}Detalles del cliente{% endblock %}
 
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Customer Details</h2>
+        <h2 class="mt-30 page-title">Detalles del cliente</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.customers' %}">Customers</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.customers' %}">Clientes</a></li>
             <li class="breadcrumb-item active">{{ customer.name }}</li>
         </ol>
         <div class="row">
             <div class="col-xl-12 col-md-12">
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h2>Customer Information</h2>
+                        <h2>Información del cliente</h2>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="customer-info">
-                                    <h5>Basic Information</h5>
-                                    <p><strong>Name:</strong> {{ customer.name }}</p>
-                                    <p><strong>Email:</strong> {{ customer.email }}</p>
-                                    <p><strong>Phone:</strong> {{ customer.phone|default:"Not provided" }}</p>
-                                    <p><strong>Joined:</strong> {{ customer.date_joined|date:"d M Y" }}</p>
+                                    <h5>Información básica</h5>
+                                    <p><strong>Nombre:</strong> {{ customer.name }}</p>
+                                    <p><strong>Correo:</strong> {{ customer.email }}</p>
+                                    <p><strong>Teléfono:</strong> {{ customer.phone|default:"No proporcionado" }}</p>
+                                    <p><strong>Registrado:</strong> {{ customer.date_joined|date:"d M Y" }}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="customer-stats">
-                                    <h5>Customer Statistics</h5>
-                                    <p><strong>Total Orders:</strong> {{ customer.order_count }}</p>
-                                    <p><strong>Total Spent:</strong> {{ settings.currency }}{{ customer.total_spent|default:"0.00" }}</p>
+                                    <h5>Estadísticas del cliente</h5>
+                                    <p><strong>Total de pedidos:</strong> {{ customer.order_count }}</p>
+                                    <p><strong>Total gastado:</strong> {{ settings.currency }}{{ customer.total_spent|default:"0.00" }}</p>
                                 </div>
                             </div>
                         </div>
@@ -41,18 +41,18 @@
 
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h2>Order History</h2>
+                        <h2>Historial de pedidos</h2>
                     </div>
                     <div class="card-body-table">
                         <div class="table-responsive">
                             <table class="table ucp-table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Order ID</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
+                                        <th>ID del pedido</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
                                         <th>Total</th>
-                                        <th>Action</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -64,12 +64,12 @@
                                         <td>{{ settings.currency }}{{ order.grand_total }}</td>
                                         <td>
                                             <a href="{% url 'users:admin.order_detail' order.id %}" 
-                                               class="btn btn-sm btn-secondary">View Order</a>
+                                               class="btn btn-sm btn-secondary">Ver pedido</a>
                                         </td>
                                     </tr>
                                     {% empty %}
                                     <tr>
-                                        <td colspan="5" class="text-center">No orders found.</td>
+                                        <td colspan="5" class="text-center">No se encontraron pedidos.</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

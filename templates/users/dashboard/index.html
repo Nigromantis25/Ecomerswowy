@@ -1,7 +1,7 @@
 {% extends 'users/dashboard/base.html' %}
 
-{% block dashboard_title %}Dashboard{% endblock %}
-{% block dashboard_subtitle %}Overview{% endblock %}
+{% block dashboard_title %}Panel{% endblock %}
+{% block dashboard_subtitle %}Resumen{% endblock %}
 
 {% block dashboard_content %}
 <div class="dashboard-info-group">
@@ -14,13 +14,13 @@
                         <i class="uil uil-box"></i>
                     </div>
                     <div class="dash-widget-info">
-                        <h6>Total Orders</h6>
+                        <h6>Total de pedidos</h6>
                         <h3>{{ total_orders }}</h3>
                     </div>
                 </div>
                 <div class="dash-widget-footer">
                     <span class="text-muted">
-                        <i class="uil uil-clock"></i> Last order {{ last_order_date|timesince }} ago
+                        <i class="uil uil-clock"></i> Último pedido hace {{ last_order_date|timesince }}
                     </span>
                 </div>
             </div>
@@ -34,12 +34,12 @@
                         <i class="uil uil-heart"></i>
                     </div>
                     <div class="dash-widget-info">
-                        <h6>Wishlist Items</h6>
+                        <h6>Artículos guardados</h6>
                         <h3>{{ wishlist_count }}</h3>
                     </div>
                 </div>
                 <div class="dash-widget-footer">
-                    <a href="{% url 'users:dashboard.wishlist' %}" class="text-muted">View Wishlist <i class="uil uil-arrow-right"></i></a>
+                    <a href="{% url 'users:dashboard.wishlist' %}" class="text-muted">Ver lista de deseos <i class="uil uil-arrow-right"></i></a>
                 </div>
             </div>
         </div>
@@ -52,23 +52,23 @@
                         <i class="uil uil-location-point"></i>
                     </div>
                     <div class="dash-widget-info">
-                        <h6>Saved Addresses</h6>
+                        <h6>Direcciones guardadas</h6>
                         <h3>{{ address_count }}</h3>
                     </div>
                 </div>
                 <div class="dash-widget-footer">
-                    <a href="{% url 'users:dashboard.addresses' %}" class="text-muted">Manage Addresses <i class="uil uil-arrow-right"></i></a>
+                    <a href="{% url 'users:dashboard.addresses' %}" class="text-muted">Administrar direcciones <i class="uil uil-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Recent Orders -->
+    <!-- Pedidos recientes -->
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="main-title-tab">
-                <h4>Recent Orders</h4>
-                <a href="{% url 'users:dashboard.orders' %}" class="view-more">View All</a>
+                <h4>Pedidos recientes</h4>
+                <a href="{% url 'users:dashboard.orders' %}" class="view-more">Ver todo</a>
             </div>
         </div>
         <div class="col-lg-12 col-md-12">
@@ -77,12 +77,12 @@
                 <table class="table ucp-table">
                     <thead>
                         <tr>
-                            <th>Order ID</th>
-                            <th>Date</th>
-                            <th>Items</th>
+                            <th>ID del pedido</th>
+                            <th>Fecha</th>
+                            <th>Artículos</th>
                             <th>Total</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -90,7 +90,7 @@
                         <tr>
                             <td>#{{ order.order_number }}</td>
                             <td>{{ order.created|date:"M d, Y" }}</td>
-                            <td>{{ order.items.count }} items</td>
+                            <td>{{ order.items.count }} artículos</td>
                             <td>{{ settings.currency }}{{ order.total_amount }}</td>
                             <td>
                                 <span class="badge badge-{{ order.status }}">
@@ -110,9 +110,9 @@
             {% else %}
             <div class="empty-orders text-center">
                 <i class="uil uil-box" style="font-size: 50px;"></i>
-                <h3>No Orders Yet</h3>
-                <p>Start shopping to see your orders here</p>
-                <a href="{% url 'products:index' %}" class="btn btn-primary">Shop Now</a>
+                <h3>Aún no tienes pedidos</h3>
+                <p>Empieza a comprar para ver tus pedidos aquí</p>
+                <a href="{% url 'products:index' %}" class="btn btn-primary">Comprar ahora</a>
             </div>
             {% endif %}
         </div>

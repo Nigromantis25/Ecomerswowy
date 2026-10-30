@@ -3,40 +3,40 @@
 {% block content %}
 <main>
     <div class="container-fluid">
-        <h2 class="mt-30 page-title">Categories</h2>
+        <h2 class="mt-30 page-title">Categorías</h2>
         <ol class="breadcrumb mb-30">
-            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'users:admin_categories' %}">Categories</a></li>
-            <li class="breadcrumb-item active">Edit Category</li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin.index' %}">Panel</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:admin_categories' %}">Categorías</a></li>
+            <li class="breadcrumb-item active">Editar categoría</li>
         </ol>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-static-2 mb-30">
                     <div class="card-title-2">
-                        <h4>Edit Category</h4>
+                        <h4>Editar categoría</h4>
                     </div>
                     <div class="card-body-table">
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label>Category Name*</label>
+                                <label>Nombre de la categoría*</label>
                                 <input type="text" class="form-control" name="name" required value="{{ category.name }}">
                             </div>
                             <div class="form-group">
-                                <label>Status*</label>
+                                <label>Estado*</label>
                                 <select class="form-control" name="status" required>
-                                    <option value="active" {% if category.status == 'active' %}selected{% endif %}>Active</option>
-                                    <option value="inactive" {% if category.status == 'inactive' %}selected{% endif %}>Inactive</option>
+                                    <option value="active" {% if category.status == 'active' %}selected{% endif %}>Activo</option>
+                                    <option value="inactive" {% if category.status == 'inactive' %}selected{% endif %}>Inactivo</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Category Image</label>
+                                <label>Imagen de la categoría</label>
                                 <input type="file" class="form-control" name="image">
                                 {% if category.image %}
                                     <img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-fluid mt-2" style="max-width: 200px; max-height: 200px;">
                                 {% endif %}
                             </div>
-                            <button type="submit" class="save-btn hover-btn">Update Category</button>
+                            <button type="submit" class="save-btn hover-btn">Actualizar categoría</button>
                         </form>
                     </div>
                 </div>
