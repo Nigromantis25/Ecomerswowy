@@ -236,10 +236,40 @@ Visit http://localhost:8000/admin to access the admin panel.
 ### Environment Variables
 - `DEBUG`: Set to False in production
 - `SECRET_KEY`: Django secret key
-- `DATABASE_URL`: Database connection string
+- `DATABASE_URL`: PostgreSQL connection string (for example, the Supabase session pooler URL). If omitted, the project uses the local `db.sqlite3` file.
 - `ALLOWED_HOSTS`: Comma-separated list of allowed hosts
 - `STRIPE_PUBLIC_KEY`: Stripe public key
 - `STRIPE_SECRET_KEY`: Stripe secret key
+
+### Supabase (PostgreSQL)
+1. In Supabase, open **Connect** and copy the PostgreSQL connection string. Use the session pooler connection if your hosting provider cannot reach the direct database host.
+2. Set `DATABASE_URL` to that connection string in the app's environment variables. Keep the database password private and do not commit it.
+3. Install dependencies and apply Django's migrations once to create the tables:
+   ```bash
+   pip install -r requirements.txt
+   python manage.py migrate
+   ```
+
+Django creates the complete schema, including the project models and Django's authentication, admin, session, and payment tables. Do not paste the connection string into the Supabase SQL Editor; it is a secret used by the app to connect to the database. User accounts are managed by this Django app, not Supabase Auth.
+
+To copy only the essential shop records (users, addresses, categories, products, cart, orders, and site settings) from the local database, open `supabase/database.sql` and run it in the Supabase SQL Editor **after** applying migrations. The file imports data into 11 existing application tables and does not create, drop, or truncate tables. Run it once when those tables are empty; it deliberately excludes optional wishlist/offers data and Stripe records.
+
+### Deploying on Vercel
+Vercel automatically detects this Django project from `manage.py` and serves collected files from `static/`. No extra Vercel configuration file is required.
+
+1. Import this repository into Vercel and add these **Production** environment variables under **Project Settings > Environment Variables**:
+   - `DATABASE_URL`: the Supabase PostgreSQL connection string.
+   - `DJANGO_SECRET_KEY`: a long, random Django secret key. Keep it private.
+   - `DJANGO_DEBUG`: `False`.
+2. Apply the database migrations once from your computer, using the same Supabase connection string:
+   ```powershell
+   $env:DATABASE_URL = "YOUR_SUPABASE_POSTGRESQL_CONNECTION_STRING"
+   python -m pip install -r requirements.txt
+   python manage.py migrate
+   ```
+3. Redeploy the project on Vercel. Django uses PostgreSQL in Vercel and deliberately refuses to fall back to SQLite there. Production debug pages are disabled.
+
+Uploaded product and category images are stored under `media/` locally. Vercel's application filesystem is not persistent, so configure external storage for uploads before relying on image uploads in production.
 
 ### Email Settings
 ```python

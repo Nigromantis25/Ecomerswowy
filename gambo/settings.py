@@ -1,18 +1,44 @@
 import os
 from pathlib import Path
+from urllib.parse import unquote, urlparse
 
 from django.core.exceptions import ImproperlyConfigured
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = os.environ.get("DJANGO_DEBUG", "True").lower() == "true"
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+IS_VERCEL = os.environ.get("VERCEL") == "1"
+DEBUG = (
+    os.environ.get("DJANGO_DEBUG", os.environ.get("DEBUG", "False" if IS_VERCEL else "True"))
+    .lower()
+    == "true"
+)
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY") or os.environ.get("SECRET_KEY")
 if not SECRET_KEY:
     if not DEBUG:
-        raise ImproperlyConfigured("Set DJANGO_SECRET_KEY when DEBUG is disabled.")
+        raise ImproperlyConfigured(
+            "Set DJANGO_SECRET_KEY or SECRET_KEY when DEBUG is disabled."
+        )
     SECRET_KEY = "django-insecure-local-development-only"
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get(
+        "ALLOWED_HOSTS",
+        ".vercel.app,localhost,127.0.0.1" if IS_VERCEL else "*",
+    ).split(",")
+    if host.strip()
+]
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",")
+    if origin.strip()
+]
+if IS_VERCEL:
+    CSRF_TRUSTED_ORIGINS.append("https://*.vercel.app")
+    for host_variable in ("VERCEL_URL", "VERCEL_PROJECT_PRODUCTION_URL"):
+        host = os.environ.get(host_variable)
+        if host:
+            CSRF_TRUSTED_ORIGINS.append(f"https://{host}")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -66,12 +92,38 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "gambo.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+DATABASE_URL = os.environ.get("DATABASE_URL")
+if DATABASE_URL:
+    parsed_database_url = urlparse(DATABASE_URL)
+    if parsed_database_url.scheme not in {"postgres", "postgresql"}:
+        raise ImproperlyConfigured(
+            "DATABASE_URL must use the postgres:// or postgresql:// scheme."
+        )
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": unquote(parsed_database_url.path.lstrip("/")),
+            "USER": unquote(parsed_database_url.username or ""),
+            "PASSWORD": unquote(parsed_database_url.password or ""),
+            "HOST": parsed_database_url.hostname or "",
+            "PORT": parsed_database_url.port or 5432,
+            "OPTIONS": {"sslmode": "require"},
+            "CONN_MAX_AGE": 0,
+            "DISABLE_SERVER_SIDE_CURSORS": True,
+        }
     }
-}
+elif IS_VERCEL:
+    raise ImproperlyConfigured(
+        "Set DATABASE_URL to a PostgreSQL connection string before deploying to Vercel."
+    )
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -111,6 +163,11 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+if IS_VERCEL:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
 
 # Stripe
 AUTH_USER_MODEL = "users.User"
